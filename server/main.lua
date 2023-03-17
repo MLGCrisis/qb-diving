@@ -58,6 +58,7 @@ RegisterNetEvent('qb-diving:server:SellCoral', function()
             Player.Functions.RemoveItem(item.name, item.amount)
             Player.Functions.AddMoney('cash', reward, "sold-coral")
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item.name], "remove")
+            TriggerEvent('wais:addmissionxp:sellcoral', 1) -- Added by Pamela for battlepass
         end
     else
         TriggerClientEvent('QBCore:Notify', src, Lang:t("error.no_coral"), 'error')
@@ -75,6 +76,7 @@ RegisterNetEvent('qb-diving:server:TakeCoral', function(area, coral, bool)
         for _ = 1, amount, 1 do
             Player.Functions.AddItem(ItemData["name"], 1)
             TriggerClientEvent('inventory:client:ItemBox', src, ItemData, "add")
+            TriggerEvent('wais:addmissionxp:pickcoral', 1) -- Added by Pamela for battlepass
             Wait(250)
         end
     else
